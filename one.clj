@@ -10,7 +10,8 @@
   [coll n step]
   (partition n step coll))
 
-(defn- pair-matches? [pair]
+(defn- pair-matches?
+  [pair]
   (= (first pair) (last pair)))
 
 (defn- matching-pairs
