@@ -2,13 +2,13 @@
 
 (ns advent.one)
 
-(defn- wrapped-captcha
+(defn- wrapped-around
   [captcha]
   (conj captcha (first captcha)))
 
-(defn- partition'
-  [coll n step]
-  (partition n step coll))
+(defn- grouped-into-pairs
+  [captcha]
+  (partition 2 1 captcha))
 
 (defn- pair-matches?
   [pair]
@@ -29,8 +29,8 @@
 (defn solved-captcha
   [captcha]
   (-> captcha
-      (wrapped-captcha)
-      (partition' 2 1)
+      (wrapped-around)
+      (grouped-into-pairs)
       (matching-pairs)
       (values-to-sum-from-matching-pairs)
       (sum-captcha-values)))
