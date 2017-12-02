@@ -21,8 +21,8 @@
 
 (defn checksum
   [spreadsheet]
-  (let [sum-row-minimums (reduce + 0 (map #(apply min %) spreadsheet))
-        sum-row-maximums (reduce + 0 (map #(apply max %) spreadsheet))]
+  (let [sum-row-minimums (apply + (map #(apply min %) spreadsheet))
+        sum-row-maximums (apply + (map #(apply max %) spreadsheet))]
     (- sum-row-maximums sum-row-minimums)))
 
 (checksum spreadsheet) ; => 48357
