@@ -26,7 +26,6 @@
   [passphrases]
   (count (filter is-valid-passphrase? passphrases)))
 
-(def passphrases (-> (slurp "passphrases.txt")
-                     (str/split-lines)))
+(def passphrases (str/split-lines (slurp "passphrases.txt")))
 
 (num-valid-passphrases passphrases) ; => 455
