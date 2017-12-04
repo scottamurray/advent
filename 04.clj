@@ -11,7 +11,7 @@
   [tokens]
   (vals (frequencies tokens)))
 
-(defn all-frequencies-one?
+(defn each-token-appears-only-once?
   [token-frequencies]
   (every? #{1} token-frequencies))
 
@@ -20,7 +20,7 @@
   (-> passphrase
       (passphrase-tokens)
       (token-frequencies)
-      (all-frequencies-one?)))
+      (each-token-appears-only-once?)))
 
 (defn num-valid-passphrases
   [passphrases]
