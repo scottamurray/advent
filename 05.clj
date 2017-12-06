@@ -1,3 +1,5 @@
+; https://adventofcode.com/2017/day/5
+
 (ns advent.five)
 (require '[clojure.string :as str])
 
@@ -11,7 +13,7 @@
   [offset jump-table]
   (>= offset (count jump-table)))
 
-(defn current-jump-value-incremented
+(defn jump-value-incremented
   "Returns a new jump table with the value at the given offset incremented."
   [jump-table offset]
   (let [current-jump-value (nth jump-table offset)]
@@ -32,7 +34,7 @@
     (if (target-offset-outside-jump-table? offset jump-table)
       moves
       (let [current-jump-value (nth jump-table offset)]
-        (recur (current-jump-value-incremented jump-table offset)
+        (recur (jump-value-incremented jump-table offset)
                (new-offset offset current-jump-value)
                (inc moves))))))
 
