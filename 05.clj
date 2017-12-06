@@ -8,12 +8,12 @@
                      (map read-string)
                      (vec)))
 
-(defn target-offset-outside-jump-table?
+(defn offset-outside-jump-table?
   "Returns true if the given offset is outside the jump table."
   [offset jump-table]
   (>= offset (count jump-table)))
 
-(defn jump-value-incremented
+(defn jump-value-inc
   "Returns a new jump table with the value at the given offset incremented."
   [jump-table offset]
   (let [current-jump-value (nth jump-table offset)]
@@ -31,10 +31,10 @@
   (loop [jump-table jump-table
          offset 0
          moves 0]
-    (if (target-offset-outside-jump-table? offset jump-table)
+    (if (offset-outside-jump-table? offset jump-table)
       moves
       (let [current-jump-value (nth jump-table offset)]
-        (recur (jump-value-incremented jump-table offset)
+        (recur (jump-value-inc jump-table offset)
                (new-offset offset current-jump-value)
                (inc moves))))))
 
